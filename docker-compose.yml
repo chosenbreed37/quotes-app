@@ -1,0 +1,19 @@
+version: '2'
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "./db:/tmp/data"
+  api:
+    build: ./api
+    ports:
+     - "3003:3003"
+  ui:
+    build: ./ui
+    ports:
+     - "3000:3000"
+    
+
+  

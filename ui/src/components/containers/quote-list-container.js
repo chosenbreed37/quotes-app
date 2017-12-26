@@ -7,6 +7,8 @@ export default class QuoteListContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = { quotes: [] };
+
+        console.log('>>> props: ', props);
     }
 
     componentDidMount() {

@@ -14,6 +14,18 @@ const createController = ({ dataStore }) => {
         }
     };
 
+    controller.add = async (req, res) => {
+        try {
+            var quote = { text: req.body.text, author: req.body.author, source: req.body.source };
+            console.log('>>> quote: ', quote);
+            var result = await dataStore.add(quote);
+            res.send(result.id);
+        } catch (err) {
+            logger.error('Error adding new quote- ' + err);
+            res.send('Error adding new quote...');
+        }
+    }
+
     return controller;
 };
 

@@ -15,12 +15,17 @@ export default class NewQuoteDialog extends React.Component {
         this.setState({...this.state,  open: true });
     };
 
-    handleClose = () => {
+    handleCancel = () => {
+        this.setState({...this.state,  open: false });
+    };
+
+    handleSubmit = () => {
         this.setState({...this.state, open: false });
         if (this.props.addNewQuote) {
             this.props.addNewQuote({ text: this.state.quoteText, 
                 author: this.state.quoteAuthor, 
-                source: this.state.quoteSource });
+                source: this.state.quoteSource 
+            });
         }
     };
 
@@ -44,12 +49,12 @@ export default class NewQuoteDialog extends React.Component {
             <FlatButton
                 label="Cancel"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={this.handleCancel}
             />,
             <FlatButton
                 label="Submit"
                 primary={true}
-                onClick={this.handleClose}
+                onClick={this.handleSubmit}
             />,
         ];
 

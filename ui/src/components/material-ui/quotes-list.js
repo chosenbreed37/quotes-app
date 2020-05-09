@@ -1,16 +1,17 @@
 import React from 'react';
-import { List, ListItem } from 'material-ui/List';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const QuotesList = ({ quotes }) => {
   return (
-    <MuiThemeProvider>
-      <List>
-        {
-          quotes.map(quote => <ListItem key={quote.id} primaryText={quote.author} secondaryText={<p>&quot;{quote.text}&quot;</p>} secondaryTextLines={2} />)
-        }
-      </List>
-    </MuiThemeProvider>
+    <List>
+      {
+        quotes.map(quote => <ListItem key={quote.id}>
+          <ListItemText secondary={quote.author} primary={'"' + quote.text + '"'} />
+        </ListItem>)
+      }
+    </List>
   );
 };
 

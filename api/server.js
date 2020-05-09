@@ -16,9 +16,11 @@ logger.stream = {
     }
 };
 
-logger.info(`configuring server for [${config.env}]...`);
+const env = config.env.trim()
 
-const dataStore = config.env === 'dev' ? createMemoryDataStore() : createMongoDataStore();
+logger.info(`configuring server for [${env}]...`);
+
+const dataStore = env === 'dev' ? createMemoryDataStore() : createMongoDataStore();
 
 const app = express();
 app.use(cors());

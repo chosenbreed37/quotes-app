@@ -5,9 +5,18 @@ const createController = ({ dataStore }) => {
 
     controller.getAll = async (req, res) => {
         try {
-            const quotes = await dataStore.getAll();
-            logger.info('Sending all quotes...');
-            res.send(quotes);
+            // check for search term
+            const searchTerm = req.query.q;
+            if (searchTerm) {
+                logger.info('Detected search term: ', searchTerm);
+                const quotes = await dataStore.getSome(searchTerm);
+                logger.info('Sending matching quotes...');
+                res.send(quotes);
+            } else {   
+                const quotes = await dataStore.getAll();
+                logger.info('Sending all quotes...');
+                res.send(quotes);
+            }
         } catch (err) {
             logger.error('Error in retrieving quotes- ' + err);
             res.send('Error retrieving quotes...');

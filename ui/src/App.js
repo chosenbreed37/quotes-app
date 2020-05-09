@@ -4,6 +4,7 @@ import logo from './assets/images/mustache.png';
 import './App.css';
 import QuotesList from './components/material-ui/quotes-list';
 import NewQuoteDialog from './components/material-ui/new-quote-dialog';
+import SearchBox from './components/material-ui/search-box';
 
 class App extends Component {
   constructor(props) {
@@ -12,13 +13,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    rest.get(this.props.config.api_url + '/quotes')
-      .on('complete', (quotes) => {
-        this.setState({ quotes });
-      })
-      .on('error', err => {
-        console.log(err);
-      });
   }
 
   onAddNewQuote = (quote) => {
@@ -32,12 +26,22 @@ class App extends Component {
       });
   }
 
+  onSearch = (searchTerm) => {
+    rest.get(this.props.config.api_url + '/quotes?q=' + searchTerm)
+      .on('complete', (quotes) => {
+        this.setState({ quotes });
+      })
+      .on('error', err => {
+        console.log(err);
+      });
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Le Moustache</h1>
+          <SearchBox onSearch={this.onSearch} />
           <NewQuoteDialog addNewQuote={this.onAddNewQuote} />
           <hr />
         </header>

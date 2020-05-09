@@ -7,6 +7,8 @@ yarn-error.log*
 
 api/dist
 ui/dist
+ui/build
+api/log
 
 # Runtime data
 pids

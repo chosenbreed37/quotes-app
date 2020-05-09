@@ -10,7 +10,7 @@
     "serve": "node dist/server.js",
     "start_babel_dev": "babel-node ./server.js --preset=babel-preset-es2015",
     "start_babel": "NODE_ENV=live babel-node ./server.js --preset=babel-preset-es2015",
-    "start_babel:win": "set NODE_ENV=live && babel-node ./server.js --preset=babel-preset-es2015",
+    "start_babel:win": "set NODE_ENV=dev && babel-node ./server.js --preset=babel-preset-es2015",
     "test": "serverPort=3001 ava",
     "dev": "npm-run-all --parallel start test",
     "lint": "eslint ."

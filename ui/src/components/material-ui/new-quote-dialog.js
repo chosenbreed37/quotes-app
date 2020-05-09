@@ -1,9 +1,7 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 export default class NewQuoteDialog extends React.Component {
 
@@ -46,22 +44,19 @@ export default class NewQuoteDialog extends React.Component {
 
     render() {
         const actions = [
-            <FlatButton
-                label="Cancel"
+            <Button
                 primary={true}
                 onClick={this.handleCancel}
-            />,
-            <FlatButton
-                label="Submit"
+            >Cancel</Button>,
+            <Button
                 primary={true}
                 onClick={this.handleSubmit}
-            />,
+            >Subtmit</Button>,
         ];
 
         return (
-            <MuiThemeProvider>
                 <div>
-                    <RaisedButton label="Add" onClick={this.handleOpen} />
+                    <Button onClick={this.handleOpen}>Add</Button>
                     <Dialog
                         title="New Quote"
                         actions={actions}
@@ -87,7 +82,6 @@ export default class NewQuoteDialog extends React.Component {
                         </div>
                     </Dialog>
                 </div>
-            </MuiThemeProvider>
         );
     }
 }

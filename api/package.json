@@ -33,7 +33,7 @@
     "cors": "^2.8.0",
     "express": "4.14.0",
     "lodash": "^4.15.0",
-    "mongoose": "^4.8.6",
+    "mongoose": "^5.9.13",
     "morgan": "^1.8.2",
     "npm-run-all": "^4.1.1",
     "request": "^2.83.0",

@@ -11,9 +11,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "set REACT_APP_API_HOST=kb251.hopto.org && set REACT_APP_API_PORT=5005 && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serve": "serve -s build --port 5000"
   },
   "browserslist": {
     "production": [

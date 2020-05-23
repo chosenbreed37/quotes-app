@@ -7,7 +7,7 @@ const QuotesList = ({ quotes }) => {
   return (
     <List>
       {
-        quotes.map(quote => <ListItem key={quote.id}>
+        quotes.map((quote, i) => <ListItem key={i}>
           <ListItemText secondary={quote.author} primary={'"' + quote.text + '"'} />
         </ListItem>)
       }

@@ -9,7 +9,7 @@ import SearchBox from './components/material-ui/search-box';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { quotes: [] };
+    this.state = { term: '', quotes: [] };
   }
 
   componentDidMount() {
@@ -29,11 +29,20 @@ class App extends Component {
   onSearch = (searchTerm) => {
     rest.get(this.props.config.api_url + '/quotes?q=' + searchTerm)
       .on('complete', (quotes) => {
-        this.setState({ quotes });
+        this.setState({ term: searchTerm, quotes });
       })
       .on('error', err => {
         console.log(err);
       });
+  }
+
+  onChangeSearchTerm = (term) => {
+    this.setState({ ...this.state, term });
+  }
+
+  onSubmit = (evt) => {
+    this.onSearch(this.state.term);
+    evt.preventDefault();
   }
 
   render() {
@@ -41,12 +50,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <SearchBox onSearch={this.onSearch} />
-          <NewQuoteDialog addNewQuote={this.onAddNewQuote} />
-          <hr />
+          <form onSubmit={this.onSubmit}>
+            <SearchBox onSearch={this.onSearch} onChangeSearchTerm={this.onChangeSearchTerm} />
+          </form>
+          {/* <NewQuoteDialog addNewQuote={this.onAddNewQuote} /> */}
         </header>
-        <p className="App-intro">
-        </p>
+        {/* <p className="App-intro">
+        </p> */}
+        {this.quotes && this.quotes.length && <hr/>}
         <QuotesList quotes={this.state.quotes} />
       </div>
     );

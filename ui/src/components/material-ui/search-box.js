@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
-const SearchBox = ({ onSearch }) => {
+const SearchBox = ({ onSearch, onChangeSearchTerm }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
-    const onChangeSearchTerm = (e) => {
+    const onChange = (e) => {
         setSearchTerm(e.target.value);
+        onChangeSearchTerm(e.target.value);
     }
 
     return (
         <div>
-            <TextField value={searchTerm} variant='outlined' onChange={onChangeSearchTerm} />
-            <Button onClick={() => { onSearch(searchTerm) }}>Search</Button>
+            <TextField
+                value={searchTerm}
+                variant='outlined'
+                onChange={onChange}
+                autoFocus={true}
+                style={{padding: 0, width: '500px'}}
+            />
         </div>
     );
 }
